@@ -54,7 +54,20 @@ class CursoController{
             console.log(error.message)
             res.status(500).json({ error: 'Não possível cadastrar o curso' })
         }
+    }
 
+
+    /* Delete */
+    async deletar(req, res){
+        const { id } = req.params
+
+    Curso.destroy({
+        where: {
+            id: id
+        }
+    }) // DELETE cursos from cursos where id = 1
+
+    res.status(204).json({})
     }
 }
 
