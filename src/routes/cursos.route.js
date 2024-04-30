@@ -15,20 +15,6 @@ cursoRoutes.get('/', auth, CursoController.find)
 cursoRoutes.delete('/:id', auth, CursoController.deletar)
 
 
-cursoRoutes.put('/:id', auth, async (req, res) => {
-    const { id } = req.params
-
-    const curso = await Curso.findByPk(id)
-
-    if (!curso) {
-        return res.status(404).json({ message: 'Curso não encontrado' })
-    }
-
-    curso.update(req.body)
-
-    await curso.save()
-
-    res.json(curso)
-})
+cursoRoutes.put('/:id', auth, CursoController.update)
 
 module.exports = cursoRoutes
